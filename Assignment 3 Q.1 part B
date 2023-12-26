@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+class Shape {
+public:
+    virtual void draw() const = 0;//pure virtual function
+
+    virtual double area() const = 0;//pure virtual function
+
+    virtual ~Shape() {}
+};
+
+class Circle : public Shape {
+public:
+    Circle(double radius) : radius(radius) {}
+
+    void draw() const override {
+        cout << "Drawing a circle" << endl;
+    }
+
+    double area() const override {
+        return 3.14 * radius * radius;
+    }
+
+private:
+    double radius;
+};
+
+class Rectangle : public Shape {
+public:
+    Rectangle(double length, double width) : length(length), width(width) {}
+
+    void draw() const override {
+        cout << "Drawing a rectangle" << endl;
+    }
+
+    double area() const override {
+        return length * width;
+    }
+
+private:
+    double length;
+    double width;
+};
+
+int main() {
+    Circle circle(5.0);
+    Rectangle rectangle(4.0, 6.0);
+
+    circle.draw();
+    cout << "Area of the circle: " << circle.area() << endl;
+
+    rectangle.draw();
+    cout << "Area of the rectangle: " << rectangle.area() << endl;
+
+    return 0;
+}
+
